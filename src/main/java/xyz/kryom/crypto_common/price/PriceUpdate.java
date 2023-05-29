@@ -15,13 +15,10 @@ import java.math.BigDecimal;
 /**
  * @author Tomas Toth
  */
-public interface PriceProvider {
-  /**
-   *
-   * @param symbolToken
-   * @return new price
-   * @throws xyz.kryom.crypto_common.exceptions.TokenNotFoundError
-   */
-  BigDecimal getPriceBySymbol(String symbolToken);
-  void initialize();
+public record PriceUpdate(
+    String symbol,
+    long timeUpdated,
+    BigDecimal price
+
+) {
 }

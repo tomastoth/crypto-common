@@ -10,18 +10,17 @@
 
 package xyz.kryom.crypto_common.price;
 
-import java.math.BigDecimal;
-
 /**
  * @author Tomas Toth
  */
-public interface PriceProvider {
-  /**
-   *
-   * @param symbolToken
-   * @return new price
-   * @throws xyz.kryom.crypto_common.exceptions.TokenNotFoundError
-   */
-  BigDecimal getPriceBySymbol(String symbolToken);
-  void initialize();
+public class CoingeckoPriceProviderFactory {
+  private CoingeckoPriceProviderFactory(){}
+  public static PriceProvider createCoingeckoPriceProvider() {
+    return new CoingeckoPriceProvider();
+  }
+
+  public static PriceProvider createCachedCoingeckoPriceProvider() {
+    return new PriceCache(new CoingeckoPriceProvider());
+  }
+
 }
